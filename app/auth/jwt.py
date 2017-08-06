@@ -5,15 +5,14 @@ from app import helpers, models
 
 def set_jwt_handlers(jwt):
     """Define handlers to jwt.
-
     :jwt: flask_jwt.JWT object
     :returns: None
-
     """
+    #注意这里是个函数不是类,不要觉得找不到jwt在哪定义
 
     @jwt.authentication_handler
     def authenticate(username, password):
-        user = models.User.objects(username=username).first()
+        user = models.User.query.filter_by(username=username).first()
 
         if user and helpers.verify_password(password, user.password):
             return user

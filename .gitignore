@@ -7,3 +7,5 @@ htmlcov/
 
 .ropeproject
 .idea
+tests/.cache/
+.cache/
